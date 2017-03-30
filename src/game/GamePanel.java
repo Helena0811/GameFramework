@@ -10,6 +10,7 @@ package game;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
@@ -60,10 +61,24 @@ public class GamePanel extends JPanel implements Runnable{	// Runnable!=쓰레드, 
 		
 		// 무조건 게임에 등장할 객체들은 접근을 쉽게 하기 위해 생성과 동시에 objectManager에 저장시키자!
 		// player 등장시키기(생성)
-		player=new Player(objectManager, 100, 200, 50, 50);
+		player=new Player(objectManager, ObjectId.Player, 100, 200, 50, 50);
 		
 		// 명단에 player 추가
 		objectManager.addObject(player);
+		
+		Random r=new Random();
+		
+		// enemy 등장시키기(생성), 적군 등장
+		for(int i=0; i<10; i++){
+			//(max-min+1)+min
+			int x=r.nextInt((WIDTH*SCALE)-300)-(300)+1+300;
+			int y=r.nextInt((HEIGHT*SCALE-50)-(50)+1)+50;
+			Enemy enemy=new Enemy(objectManager, ObjectId.Enemy, x, y, 30, 30);
+			
+			// 명단에 enemy 추가
+			objectManager.addObject(enemy);
+		}
+		
 	}
 	
 	// 패널의 그리기 설정

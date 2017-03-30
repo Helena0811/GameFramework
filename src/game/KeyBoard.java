@@ -44,7 +44,6 @@ public class KeyBoard extends KeyAdapter{
 				player.fire();
 				// Bullet bullet=new Bullet();	현재 Bullet은 접근 불가능
 				break;
-				
 		}
 	}
 	
